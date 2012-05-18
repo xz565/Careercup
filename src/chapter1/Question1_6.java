@@ -7,30 +7,29 @@ package chapter1;
  * Can you do this in place?
  */
 public class Question1_6 {
-
-	/* first try to use additional buffer 
-	 * time: O(N^2) space: O(N^2) */
-	public static int[][] rotate(int[][] image) {
-		int[][] im = new int[image.length][image[0].length];
-		for(int i = 0; i < image.length; i++) {
-			for(int j = 0; j < image[0].length; j++) {
-				im[j][i] = image[i][j];
-			}
-		}
-		return im;
-	}
 	
-	/* in place method 
-	 * time: O((N^2)/2) space O(1)*/
-	public static int[][] rotate2(int[][] image) {
-		for(int i = 0; i < image.length; i++) {
-			for(int j = i; j < image[0].length; j++) {
-				// exchange ij and ji
-				int tmp = image[i][j];	
-				image[i][j] = image[j][i];
-				image[j][i] = tmp;
+	/* in place method */
+	public static int[][] rotate(int[][] image) {
+		int N = image.length;
+		for(int i = 0; i < N / 2; ++i) {
+			for(int j = i; j < N - 1 - i; ++j) {
+				// save top
+				int temp = image[i][j];
+				
+				// right --> top
+				image[i][j] = image[j][N - 1 - i];
+				
+				// bottom --> right
+				image[j][N - 1 - i] = image[N - 1 - i][N - 1 - j];
+				
+				// left --> bottom
+				image[N - 1 - i][N - 1 - j] = image[N - 1 - j][i];
+				
+				// top --> left
+				image[N - 1 - j][i] = temp;
 			}
 		}
+
 		return image;
 	}
 	
@@ -44,15 +43,13 @@ public class Question1_6 {
 	}
 	
 	public static void main(String[] args) {
-		int[][] image = {{0, 0, 1, 0, 0},
-				         {0, 1, 1, 1, 0},
-				         {1, 1, 0, 1, 1},
-				         {1, 1, 0, 1, 1},
-				         {1, 1, 0, 1, 1}};
+		int[][] image = {{0, 1, 1, 0, 0},
+						 {0, 0, 5, 0, 0},
+						 {4, 6, 9, 8, 2},
+						 {4, 0, 7, 0, 2},
+						 {0, 0, 3, 3, 0},};
 		print(image);
 		System.out.print("\n");
 		print(rotate(image));
-		System.out.print("\n");
-		print(rotate2(image));
 	}
 }
