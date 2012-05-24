@@ -8,6 +8,13 @@ public class Node {
 		data = d;
 	}
 	
+	public Node(int[] data) {
+		this.data = data[0];
+		for(int i = 1; i < data.length; i++) {
+			appendToTail(data[i]);
+		}
+	}
+	
 	void appendToTail(int d) {
 		Node tail = new Node(d);
 		Node n = this;
@@ -30,5 +37,16 @@ public class Node {
 			n = n.next;
 		}
 		return head;
+	}
+	
+	void print() {
+		if(this == null) return;
+		
+		Node n = this;
+		while(n != null) {
+			System.out.print(n.data + " ");
+			n = n.next;
+		}
+		System.out.print("\n");
 	}
 }

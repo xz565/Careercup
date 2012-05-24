@@ -1,5 +1,7 @@
 package chapter2;
 
+import java.util.HashSet;
+
 /*
  * Write code to remove duplicates 
  * from an unsorted linked list 
@@ -9,11 +11,10 @@ package chapter2;
  */
 public class Question2_1 {
 
-	/*
-	 * a brute force algorithm
+	/* a brute force algorithm
 	 * time: O(n^2) space: O(1)
 	 */
-	public void removeDup(Node list) {
+	public static void removeDup(Node list) {
 		if(list == null) return;
 		
 		Node currt = list;
@@ -30,10 +31,30 @@ public class Question2_1 {
 		}
 	}
 	
-	public static void main(String[] args) {
-		Node list = new Node(0);
-		list.appendToTail(0);
-		list.appendToTail(0);
+	/* method with additional buffer */
+	public static void rmDup(Node list) {
+		if(list == null) return;
 		
+		HashSet<Integer> eleSet = new HashSet<Integer>();
+		Node prev = list;
+		Node currt = list.next;
+		eleSet.add(prev.data);
+		while(currt != null) {
+			if(eleSet.contains(currt.data)) {
+				prev.next = currt.next;
+			} else {
+				eleSet.add(currt.data);
+				prev = prev.next;
+			}
+			currt = currt.next;
+		}
+	}
+	
+	public static void main(String[] args) {
+		Node list = new Node(new int[] {0, 0, 0, 1, 2, 1});
+		list.print();
+		//removeDup(list);
+		rmDup(list);
+		list.print();
 	}
 }
