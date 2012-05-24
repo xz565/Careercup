@@ -31,7 +31,8 @@ public class Question2_1 {
 		}
 	}
 	
-	/* method with additional buffer */
+	/* method with additional buffer 
+	 * time: O(n) space: O(n)*/
 	public static void rmDup(Node list) {
 		if(list == null) return;
 		
