@@ -1,5 +1,7 @@
 package chapter3;
 
+import java.util.Stack;
+
 /*
  * In the classic problem of the Towers of Hanoi, 
  * you have 3 rods and N disks of different sizes 
@@ -16,5 +18,50 @@ package chapter3;
  * rod to the last using Stacks
  */
 public class TowerOfHanoi {
+	private Stack<Integer> disks;
+	private int index;
 	
+	public TowerOfHanoi(int _index) {
+		disks = new Stack<Integer>();
+		index = _index;
+	}
+	
+	public int index() {
+		return index;
+	}
+	
+	public void add(int d) {
+		if(!disks.isEmpty() && disks.peek() <= d) {
+			System.out.println("Error placing disk " + d);
+		} else {
+			disks.push(d);
+		}
+	}
+	
+	public void moveTop(TowerOfHanoi tower) {
+		int top = disks.pop();
+		tower.add(top);
+		System.out.println("Move disk " + top + " from " + index() + 
+				" to " + tower.index());
+	}
+	
+	public void move(int n, TowerOfHanoi dest, TowerOfHanoi buffer) {
+		if(n > 0) {
+			move(n - 1, buffer, dest);
+			moveTop(dest);
+			buffer.move(n - 1, dest, this);
+		}
+	}
+	
+	public static void main(String[] args) {
+		int n = 3;
+		TowerOfHanoi[] towers = new TowerOfHanoi[3];
+		for(int i = 0; i < 3; i ++) {
+			towers[i] = new TowerOfHanoi(i);
+		}
+		for(int i = n - 1; i >= 0; i--) {
+			towers[0].add(i);
+		}
+		towers[0].move(n, towers[2], towers[1]);
+	}
 }
