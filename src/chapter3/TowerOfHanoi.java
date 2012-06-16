@@ -53,8 +53,19 @@ public class TowerOfHanoi {
 		}
 	}
 	
+	public void print() {
+		if(disks.size() == 0) {
+			System.out.println("null");
+			return;
+		}
+		for(int i : disks) {
+			System.out.print(i + " ");
+		}
+		System.out.print("\n");
+	}
+	
 	public static void main(String[] args) {
-		int n = 3;
+		int n = 6;
 		TowerOfHanoi[] towers = new TowerOfHanoi[3];
 		for(int i = 0; i < 3; i ++) {
 			towers[i] = new TowerOfHanoi(i);
@@ -62,6 +73,8 @@ public class TowerOfHanoi {
 		for(int i = n - 1; i >= 0; i--) {
 			towers[0].add(i);
 		}
+		for(TowerOfHanoi t : towers) t.print();
 		towers[0].move(n, towers[2], towers[1]);
+		for(TowerOfHanoi t : towers) t.print();
 	}
 }
