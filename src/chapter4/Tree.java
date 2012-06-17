@@ -1,13 +1,13 @@
 package chapter4;
 
 public class Tree {
-	Node root;
+	TreeNode root;
 	
 	public Tree(int val) {
-		root = new Node(val);
+		root = new TreeNode(val);
 	}
 	
-	public Tree(Node n) {
+	public Tree(TreeNode n) {
 		root = n;
 	}
 	

@@ -9,20 +9,20 @@ package chapter4;
  */
 public class Question4_1 {
 
-	public static boolean isBalanced(Node root) {
+	public static boolean isBalanced(TreeNode root) {
 		int max = maxHeight(root);
 		int min = minHeight(root);
 		System.out.println("max: " + max + " min " + min);
 		return (max - min) <= 1;
 	}
 
-	private static int minHeight(Node node) {
+	private static int minHeight(TreeNode node) {
 		if(node == null) return 0;
 		if(node.left == null && node.right == null) return 0;
 		return 1 + Math.min(minHeight(node.left), minHeight(node.right));
 	}
 
-	private static int maxHeight(Node node) {
+	private static int maxHeight(TreeNode node) {
 		if(node == null) return 0;
 		if(node.left == null && node.right == null) return 0;
 		return 1 + Math.max(maxHeight(node.left), maxHeight(node.right));
@@ -32,8 +32,8 @@ public class Question4_1 {
 		Tree tree = new Tree(8);
 		tree.root.addLeft(10);
 		tree.root.addRight(12);
-		Node n1 = tree.root.left;
-		Node n2 = tree.root.right;
+		TreeNode n1 = tree.root.left;
+		TreeNode n2 = tree.root.right;
 		n1.addLeft(20);
 		n1.addRight(22);
 		n1.left.addLeft(15);
