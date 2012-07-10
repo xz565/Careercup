@@ -10,6 +10,7 @@ public class Question9_5 {
 	static LinkedList<String> calcPermutation(String str) {
 		LinkedList<String> newPerms = new LinkedList<String>();
 		if(str == null) return newPerms;
+		
 		if(str.length() == 1) {
 			newPerms.add(str);
 			return newPerms;
