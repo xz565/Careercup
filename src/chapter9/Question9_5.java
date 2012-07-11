@@ -33,6 +33,20 @@ public class Question9_5 {
 		return head + ch + tail;
 	}
 	
+	// found this cool code on the BBS
+	public static void permutateString(String s, String tgs){
+		int last = tgs.length();
+
+		if (last == 0){
+			System.out.println(s);
+			return;
+		}
+
+		for (int i = 0; i < last; i++ ){
+			permutateString(s + tgs.charAt(i), tgs.substring(0, i) + tgs.substring(i+1));
+		}
+	}
+	
 	public static void main(String[] args) {
 		String str = "Aporia";
 		LinkedList<String> perms = calcPermutation(str);
