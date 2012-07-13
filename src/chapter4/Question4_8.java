@@ -20,6 +20,7 @@ public class Question4_8 {
 		findSumPaths(root.right, sum, paths);
 	}
 	
+	@SuppressWarnings("unchecked")
 	static void findPathsForOneNode(TreeNode root, 
 			int sum, ArrayList<TreeNode> path, List<List<TreeNode>> paths) {
 		if(root == null) return;
