@@ -47,7 +47,10 @@ public class MutationPath {
 	public static void main(String[] args) {
 		String start = "qwertyuiop";
 		String end = "poiuytrewq";
+		
+		long startTime = System.currentTimeMillis();
 		HashMap<String, String> path = findPath(start, end);
+		long endTime = System.currentTimeMillis();
 		
 		String next = path.get(end);
 		System.out.print(end + "\n");
@@ -56,5 +59,6 @@ public class MutationPath {
 			next = path.get(next);
 		}
 		System.out.println(path.size());
+		System.out.println(endTime - startTime);
 	}
 }
