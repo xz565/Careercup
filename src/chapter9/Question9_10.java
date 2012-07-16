@@ -34,15 +34,18 @@ public class Question9_10 {
 	/*
 	 * Dynamic programming
 	 */
+	@SuppressWarnings("unchecked")
 	static ArrayList<Box> buildTallest(Box[] boxes, Box bottom, HashMap<Box, ArrayList<Box>> buffer) throws CloneNotSupportedException {
 		if(bottom != null && buffer.containsKey(bottom)) {
-			//return buffer.get(bottom);
+			return (ArrayList<Box>)buffer.get(bottom).clone();
+			/*
 			ArrayList<Box> bottomStack = buffer.get(bottom);
 			ArrayList<Box> cloneStack = new ArrayList<Box>();
 			for(Box b : bottomStack) {
 				cloneStack.add((Box)b.clone());
 			}
 			return cloneStack;
+			*/
 		}
 		
 		int maxHeight = 0;
@@ -67,12 +70,14 @@ public class Question9_10 {
 		}
 		buffer.put(bottom, maxStack);
 		
+		return (ArrayList<Box>)maxStack.clone();
+		/*
 		ArrayList<Box> cloneStack = new ArrayList<Box>();
 		for(Box b : maxStack) {
 			cloneStack.add((Box)b.clone());
 		}
-		//return (ArrayList<Box>)maxStack.clone();
 		return cloneStack;
+		*/
 	}	
 	
 	static int getHeight(ArrayList<Box> stack) {
