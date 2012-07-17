@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/*
+ * An interview question of Epic
+ */
 public class MutationPath {
 
 	public static HashMap<String, String> findPath(String startWord, String endWord) {

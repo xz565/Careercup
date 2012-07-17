@@ -92,9 +92,9 @@ public class Question9_10 {
 		//Box[] boxes = {new Box(1, 2, 3), new Box(2, 4, 9), new Box(5, 2, 7), new Box(3, 1, 7), new Box(9, 1, 5),
 		//		new Box(3, 9, 1), new Box(5, 7, 8), new Box(4, 6, 9), new Box(8, 9, 9), new Box(6, 7, 9)};
 		Random rd = new Random(System.currentTimeMillis());
-		Box[] boxes = new Box[200];
-		for(int i = 0; i < 200; i++) {
-			boxes[i] = new Box(Math.abs(rd.nextInt()), Math.abs(rd.nextInt()), Math.abs(rd.nextInt()));
+		Box[] boxes = new Box[500];
+		for(int i = 0; i < 500; i++) {
+			boxes[i] = new Box(Math.abs(rd.nextInt()%100), Math.abs(rd.nextInt()%100), Math.abs(rd.nextInt())%100);
 		}
 		long start = System.currentTimeMillis();
 		ArrayList<Box> maxStack = buildTallest(boxes, null);
