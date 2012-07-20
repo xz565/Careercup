@@ -1,8 +1,8 @@
-package Other;
+package chapter17;
 
 import java.util.Random;
 
-public class FindMaxSub {
+public class Question17_8 {
 
 	// This is a O(n^3) method
 	// Dead at n = 10^4
