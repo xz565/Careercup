@@ -1,5 +1,6 @@
 package chapter9;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /* Implement an algorithm to print all valid (e.g., properly 
@@ -38,7 +39,35 @@ public class Question9_6 {
 		return left + "(()" + right;
 	}
 	
+	static void addParen(ArrayList<String> parens, int leftRem, int rightRem, char[] str, int pos) {
+		if(leftRem < 0 || rightRem < leftRem) return;
+		
+		if(leftRem == 0 && rightRem == 0) {
+			String s = String.copyValueOf(str);
+			parens.add(s);
+		}
+		
+		if(leftRem > 0) {
+			str[pos] = '(';
+			addParen(parens, leftRem - 1, rightRem, str, pos + 1);
+		}
+		
+		if(rightRem > leftRem) {
+			str[pos] = ')';
+			addParen(parens, leftRem, rightRem - 1, str, pos + 1);
+		}
+	}
+	
 	public static void main(String[] args) {
-		System.out.print(printParentheses(4));
+		int num = 4;
+		System.out.println(printParentheses(num));
+		System.out.println(printParentheses(num).size());
+		
+		ArrayList<String> parens = new ArrayList<String>();
+		char[] str = new char[num * 2];
+		addParen(parens, num, num, str, 0);
+		for(String s : parens)
+			System.out.println(s);
+		System.out.print(parens.size());
 	}
 }
