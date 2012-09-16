@@ -2,6 +2,7 @@ package chapter9;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /* Implement an algorithm to print all valid (e.g., properly 
  * opened and closed) combinations of n-pairs of parentheses.
@@ -39,7 +40,7 @@ public class Question9_6 {
 		return left + "(()" + right;
 	}
 	
-	static void addParen(ArrayList<String> parens, int leftRem, int rightRem, char[] str, int pos) {
+	static void addParen(LinkedList<String> parens, int leftRem, int rightRem, char[] str, int pos) {
 		if(leftRem < 0 || rightRem < leftRem) return;
 		
 		if(leftRem == 0 && rightRem == 0) {
@@ -63,11 +64,12 @@ public class Question9_6 {
 		System.out.println(printParentheses(num));
 		System.out.println(printParentheses(num).size());
 		
-		ArrayList<String> parens = new ArrayList<String>();
+		LinkedList<String> parens = new LinkedList<String>();
 		char[] str = new char[num * 2];
 		addParen(parens, num, num, str, 0);
-		for(String s : parens)
-			System.out.println(s);
-		System.out.print(parens.size());
+		//for(String s : parens)
+		//	System.out.println(s);
+		System.out.println(parens);
+		System.out.println(parens.size());	
 	}
 }
