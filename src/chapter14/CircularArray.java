@@ -2,6 +2,11 @@ package chapter14;
 
 import java.util.Iterator;
 
+/*
+ * Implement a CircularArray class that supports an array-like data structure
+ * which can be efficient rotated. The class should use a generic type, and
+ * should support iteration via the standard for (Obj o : circularArray) notationw
+ */
 public class CircularArray<T> implements Iterable<T>{
 	
 	private T[]  items;
