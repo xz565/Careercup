@@ -48,8 +48,8 @@ public class MutationPath {
 	}
 	
 	public static void main(String[] args) {
-		String start = "qwertyuiop";
-		String end = "poiuytrewq";
+		String start = "qwerty";
+		String end = "ytrewq";
 		
 		long startTime = System.currentTimeMillis();
 		HashMap<String, String> path = findPath(start, end);
