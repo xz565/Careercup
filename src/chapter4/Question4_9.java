@@ -8,7 +8,7 @@ import java.util.List;
  * Note that it can be any path in the tree, 
  * it does not have to start at the root
  */
-public class Question4_8 {
+public class Question4_9 {
 
 	// a workable algorithm with only positive intergers in the tree
 	static void findSumPaths(TreeNode root, int sum, List<List<TreeNode>> paths) {
