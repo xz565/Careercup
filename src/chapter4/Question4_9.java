@@ -75,11 +75,11 @@ public class Question4_9 {
 	*/
 	
 	public static void main(String[] args) {
-		int[] nodes = {1, 3, 4, 7, 9, 11, 15, 28, 31};
+		int[] nodes = {1, 3, 4, 7, 9, 11, 4, 3, -3};
 		TreeNode root = Question4_3.buildBinaryTree(nodes, 0, nodes.length - 1);
 		
 		List<List<TreeNode>> paths = new ArrayList<List<TreeNode>>();
-		findSumPaths(root, 7, paths);
+		findSumPaths(root, 13, paths);
 		System.out.print(paths);
 	}
 }
