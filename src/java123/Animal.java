@@ -8,6 +8,10 @@ public class Animal {
 		print();
 	}
 	
+	public void foo() {
+		System.out.println("Animal foo()");
+	}
+	
 	private void print() {
 		System.out.println("Hello World!");
 	}
