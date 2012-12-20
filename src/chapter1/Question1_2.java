@@ -35,9 +35,30 @@ public class Question1_2 {
 		return str;
 	}
 	
+	/*
+	 * reverse a String in Java
+	 * time O(n) space O(1)
+	 * actually the space is still n, because String in Java is immutable
+	 */
+	public static String reverse3(String str) {
+		StringBuffer sb = new StringBuffer(str);
+		int head = 0;
+		int tail = sb.length() - 1;
+		while(head < tail) {
+			char tmp = sb.charAt(head);
+			sb.setCharAt(head, sb.charAt(tail));
+			sb.setCharAt(tail, tmp);
+			
+			head++;
+			tail--;
+		}
+		return sb.toString();
+	}
+	
 	public static void main(String[] args) {
 		String str = "abcde 12345";
 		System.out.println(reverse(str));
 		System.out.println(reverse2(str.toCharArray()));
+		System.out.println(reverse3(str));
 	}
 }
