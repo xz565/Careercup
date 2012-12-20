@@ -13,5 +13,8 @@ public class Chiwawa extends Dog{
 	public static void main(String[] args) {
 		Dog dog = new Chiwawa();
 		dog.foo();
+		System.out.println();
+		Animal animal = new Chiwawa();
+		animal.foo();
 	}
 }
