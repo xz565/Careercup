@@ -35,6 +35,21 @@ public class Question1_1 {
 		return true;
 	}
 
+	// a bitwise solution
+	// assume the string only uses lower case letters a through z
+	public static boolean isUniqueChars(String str) {
+		if(str.length() > 256) return false;
+		
+		int checker = 0;
+		for(int i = 0; i < str.length();  i++) {
+			int val = str.charAt(i) - 'a';
+			if((checker & (1 << val)) > 0)
+				return false;
+			checker |= (1 << val);
+		}
+		return true;
+	}
+	
 	public static void main(String[] args) {
 		String[] strs = { "asdfghjklASDFGHJKL!@#$%^&*()",
 				"asdfghjklqwertyuiopf", "", "~!@#$%^&*()_+ASDFGHJKL;" };
@@ -43,5 +58,9 @@ public class Question1_1 {
 		System.out.println();
 		for (String str : strs)
 			System.out.println(isAllUnique2(str));
+		System.out.println();
+		String[] strs2 = { "asdfghjkl", "asdfghjklqwertyuiopf", ""};
+		for (String str : strs2)
+			System.out.println(isUniqueChars(str));
 	}
 }
