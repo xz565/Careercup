@@ -1,5 +1,6 @@
 package chp11_SortingAndSearching;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -45,10 +46,55 @@ public class Question11_7 implements Comparator<People>{
 		return currtLen > maxLen ? currtLen : maxLen;
 	}
 	
+	
+	// another solution recursively
+	// improved by DP
+	public static ArrayList<People> findLargestR(People[] peoples, People bottom) {
+		int maxHeight = 0;
+		ArrayList<People> maxTower = null;
+		
+		for(People p : peoples) {
+			if(p.canBeAbove(bottom)) {
+				ArrayList<People> newTower = findLargestR(peoples, p);
+				int newHeight = newTower.size();
+				if(newHeight > maxHeight) {
+					maxHeight = newHeight;
+					maxTower = newTower;
+				}
+			}
+		}
+		
+		if(maxTower == null)
+			maxTower = new ArrayList<People>();
+		
+		maxTower.add(0, bottom);
+		
+		return maxTower;
+	}
+	
 	public static void main(String[] args) {
+		/*
 		People[] ps = {new People(65, 100), new People(70, 150), new People(56, 90), new People(75, 190), 
-				new People(60, 95), new People(68, 110), };
-		System.out.print(computeNum(ps));
+				new People(60, 95), new People(68, 110), new People(20, 100)};
+		*/
+		final int max = 100;
+		People[] ps = new People[max];
+		for(int i = 0; i < max; i++) {
+			ps[i] = new People((int)(100*Math.random()%100), (int)(100*Math.random()%100));
+		}
+		
+		long startTime = System.currentTimeMillis();
+		System.out.println("Max Height " + computeNum(ps));
+		long endTime = System.currentTimeMillis();
+		System.out.println("Time:" + (endTime - startTime));
+		System.out.println();
+		
+		startTime = System.currentTimeMillis();
+		ArrayList<People> maxTower = findLargestR(ps, new People(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		endTime = System.currentTimeMillis();
+		System.out.println("Max Height " + maxTower.size());
+		System.out.println("Time:" + (endTime - startTime));
+		for(People p : maxTower) System.out.println(p);
 	}
 }
 
@@ -59,6 +105,10 @@ class People {
 	public People(int h, int w) {
 		height = h;
 		weight = w;
+	}
+
+	public boolean canBeAbove(People p) {
+		return this.height < p.height && this.weight < p.weight;
 	}
 	
 	public String toString() {
