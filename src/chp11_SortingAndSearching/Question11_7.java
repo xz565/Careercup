@@ -3,6 +3,7 @@ package chp11_SortingAndSearching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Question11_7 implements Comparator<People>{
 
@@ -48,7 +49,6 @@ public class Question11_7 implements Comparator<People>{
 	
 	
 	// another solution recursively
-	// improved by DP
 	public static ArrayList<People> findLargestR(People[] peoples, People bottom) {
 		int maxHeight = 0;
 		ArrayList<People> maxTower = null;
@@ -70,6 +70,35 @@ public class Question11_7 implements Comparator<People>{
 		maxTower.add(0, bottom);
 		
 		return maxTower;
+	}
+	
+	
+	public static ArrayList<People> findLargestDP(
+			People[] peoples, People bottom, HashMap<People, ArrayList<People>> map) {
+		if(map.containsKey(bottom))
+			return (ArrayList<People>)map.get(bottom).clone();
+		
+		int maxHeight = 0;
+		ArrayList<People> maxTower = null;
+		
+		for(People p : peoples) {
+			if(p.canBeAbove(bottom)) {
+				ArrayList<People> newTower = findLargestDP(peoples, p, map);
+				int newHeight = newTower.size();
+				if(newHeight > maxHeight) {
+					maxHeight = newHeight;
+					maxTower = newTower;
+				}
+			}
+		}
+		
+		if(maxTower == null)
+			maxTower = new ArrayList<People>();
+		
+		maxTower.add(0, bottom);
+		map.put(bottom, maxTower);
+		
+		return (ArrayList<People>)maxTower.clone();
 	}
 	
 	public static void main(String[] args) {
@@ -95,6 +124,18 @@ public class Question11_7 implements Comparator<People>{
 		System.out.println("Max Height " + maxTower.size());
 		System.out.println("Time:" + (endTime - startTime));
 		for(People p : maxTower) System.out.println(p);
+		System.out.println();
+		
+		HashMap<People, ArrayList<People>> map = new HashMap<People, ArrayList<People>>();
+		startTime = System.currentTimeMillis();
+		maxTower = null;
+		maxTower = findLargestDP(ps, new People(Integer.MAX_VALUE, Integer.MAX_VALUE), map);
+		endTime = System.currentTimeMillis();
+		System.out.println("Max Height " + maxTower.size());
+		System.out.println("Time:" + (endTime - startTime));
+		for(People p : maxTower) System.out.println(p);
+		//System.out.println(map.keySet().size());
+		
 	}
 }
 
